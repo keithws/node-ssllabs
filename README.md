@@ -23,6 +23,10 @@ A node.js library for the [SSL Labs API][1].
 	ssllabs.getEndpointData( { "host": "ssllabs.com", "s": "64.41.200.100" }, function (err, endpointData) {
 		console.dir(endpointData);
 	});
+	
+	ssllabs.getStatusCodes(function (err, statusCodes) {
+		console.dir(statusCodes);
+	});
 
 ## License
 
@@ -32,12 +36,13 @@ node-ssllabs is available under the [MIT License][2].
 
 *0.1.0 — April 20, 2015*
 
-* added suport for the `getEndpointData` api endpoint.
+* added support for the `getEndpointData` api endpoint.
+* added support for the `getStatusCodes` api endpoint.
 
 *0.0.1 — April 20, 2015*
 
 * Initial version
-* supports two api end-points, `info` and `analyze`
+* supports two api endpoints, `info` and `analyze`
 
 
   [1]: https://www.ssllabs.com/projects/ssllabs-apis/

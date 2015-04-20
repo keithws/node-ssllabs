@@ -1,0 +1,28 @@
+{
+  "name": "node-ssllabs",
+  "version": "0.0.1",
+  "description": "A node.js library for the SSL Labs API.",
+  "main": "",
+  "repository": "https://github.com/keithws/node-ssllabs.git",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "ssllabs",
+    "api",
+    "ssl",
+    "scan"
+  ],
+  "author": "Keith Shaw",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^6.0.1"
+  },
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}

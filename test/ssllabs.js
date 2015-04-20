@@ -30,7 +30,7 @@ describe("ssllabs", function () {
 
 			options = {
 				all: "done",
-				host: "keithws.net",
+				host: "ssllabs.com",
 				publish: true,
 				startNew: false
 			};
@@ -49,7 +49,7 @@ describe("ssllabs", function () {
 
 			options = {
 				all: "done",
-				host: "keithws.net",
+				host: "ssllabs.com",
 				publish: true
 			};
 

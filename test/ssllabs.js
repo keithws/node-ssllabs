@@ -62,6 +62,23 @@ describe("ssllabs", function () {
 			});
 		});
 
+		it("should retrieve detailed endpoint information", function (done) {
+			var options;
+
+			options = {
+				host: "ssllabs.com",
+				s: "64.41.200.100"
+			}
+
+			ssllabs.getEndpointData(options, function (err, endpoint) {
+				if (err) {
+					throw err;
+				}
+				endpoint.statusMessage.should.be.ok;
+				endpoint.ipAddress.should.equal("64.41.200.100");
+				done();
+			});
+		});
 	});
 
 });

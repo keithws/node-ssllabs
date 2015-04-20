@@ -79,6 +79,17 @@ describe("ssllabs", function () {
 				done();
 			});
 		});
+
+		it("should retrieve known status codes", function (done) {
+			ssllabs.getStatusCodes(function (err, statusCodes) {
+				if (err) {
+					return done(err);
+				}
+				statusCodes.should.have.property("statusDetails");
+				done();
+			});
+		});
+
 	});
 
 });

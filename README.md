@@ -19,6 +19,10 @@ A node.js library for the [SSL Labs API][1].
 	ssllabs.analyze({ "host": "ssllabs.com" }, function (err, host) {
 		console.dir(host);
 	});
+	
+	ssllabs.getEndpointData( { "host": "ssllabs.com", "s": "64.41.200.100" }, function (err, endpointData) {
+		console.dir(endpointData);
+	});
 
 ## License
 
@@ -26,7 +30,11 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
-0.0.1 — April 20, 2015
+*0.1.0 — April 20, 2015*
+
+* added suport for the `getEndpointData` api endpoint.
+
+*0.0.1 — April 20, 2015*
 
 * Initial version
 * supports two api end-points, `info` and `analyze`

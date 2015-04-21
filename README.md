@@ -39,6 +39,12 @@ A node.js library for the [SSL Labs API][1].
 
 node-ssllabs is available under the [MIT License][2].
 
+## Todo
+
+* add `scan` function to encapsulate [protocol usage][3]
+* add support for [access rate and rate limiting][4]
+* add cli script for scanning and reporting
+
 ## Change Log
 
 **0.1.0 — April 20, 2015**
@@ -56,3 +62,5 @@ node-ssllabs is available under the [MIT License][2].
 
   [1]: https://www.ssllabs.com/projects/ssllabs-apis/
   [2]: https://github.com/keithws/node-ssllabs/blob/master/LICENSE
+  [3]: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md#protocol-usage
+  [4]: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md#access-rate-and-rate-limiting

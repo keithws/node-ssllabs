@@ -16,11 +16,18 @@ A node.js library for the [SSL Labs API][1].
 		console.dir(info);
 	});
 	
-	ssllabs.analyze({ "host": "ssllabs.com" }, function (err, host) {
+	var options = {
+		"host": "ssllabs.com"
+	};
+	ssllabs.analyze(options, function (err, host) {
 		console.dir(host);
 	});
 	
-	ssllabs.getEndpointData( { "host": "ssllabs.com", "s": "64.41.200.100" }, function (err, endpointData) {
+	var options = {
+		"host": "ssllabs.com",
+		"s": "64.41.200.100"
+	};
+	ssllabs.getEndpointData(options, function (err, endpointData) {
 		console.dir(endpointData);
 	});
 	

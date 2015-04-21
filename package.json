@@ -8,6 +8,8 @@
     "test": "test"
   },
   "scripts": {
+    "lint": "jshint **/*.js",
+    "pretest": "npm run lint",
     "test": "mocha"
   },
   "keywords": [
@@ -19,6 +21,7 @@
   "author": "Keith Shaw",
   "license": "MIT",
   "devDependencies": {
+    "jshint": "^2.7.0",
     "mocha": "^2.2.4",
     "should": "^6.0.1"
   },

@@ -1,6 +1,13 @@
+/*jslint node: true */
+/*jslint expr: true */
+"use strict";
+
 var should = require("should"),
-mocha = require("mocha"),
-ssllabs = require("../lib/ssllabs.js");
+	mocha = require("mocha"),
+	ssllabs = require("../lib/ssllabs.js");
+
+var describe = mocha.describe,
+	it = mocha.it;
 
 describe("ssllabs", function () {
 
@@ -68,7 +75,7 @@ describe("ssllabs", function () {
 			options = {
 				host: "ssllabs.com",
 				s: "64.41.200.100"
-			}
+			};
 
 			ssllabs.getEndpointData(options, function (err, endpoint) {
 				if (err) {

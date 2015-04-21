@@ -97,6 +97,31 @@ describe("ssllabs", function () {
 			});
 		});
 
+		it("should invoke analyze and poll until the assessment is finished", function (done) {
+			var options;
+
+			this.timeout(2 * 60 * 1000);
+			this.slow(60 * 1000);
+
+			options = {
+				host: "ssllabs.com",
+				startNew: true
+			};
+
+			ssllabs.scan(options, function (err, host) {
+				if (err) {
+					throw err;
+				}
+				host.status.should.be.ok;
+				host.status.should.equal("READY");
+				host.endpoints.length.should.be.above(0);
+				host.endpoints.forEach(function (endpoint) {
+					endpoint.grade.should.be.ok;
+					endpoint.grade.should.not.be.empty;
+				});
+				done();
+			});
+		});
 	});
 
 });

@@ -10,7 +10,7 @@ A node.js library for the [SSL Labs API][1].
 
 ## Usage
 
-	var ssllabs = require("ssllabs");
+	var ssllabs = require("node-ssllabs");
 	
 	ssllabs.info(function (err, info) {
 		console.dir(info);
@@ -43,7 +43,6 @@ node-ssllabs is available under the [MIT License][2].
 
 * add `scan` function to encapsulate [protocol usage][3]
 * add support for [access rate and rate limiting][4]
-* add cli script for scanning and reporting
 
 ## Change Log
 
@@ -51,8 +50,8 @@ node-ssllabs is available under the [MIT License][2].
 
 * added support for the `getEndpointData` api endpoint.
 * added support for the `getStatusCodes` api endpoint.
-* improved error reporting.
-* improved code quality.
+* added index.js to export the library.
+* improved error handling and reporting.
 
 **0.0.1 — April 20, 2015**
 

@@ -34,14 +34,14 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
-*0.1.0 — April 20, 2015*
+**0.1.0 — April 20, 2015**
 
 * added support for the `getEndpointData` api endpoint.
 * added support for the `getStatusCodes` api endpoint.
 * improved error reporting.
 * improved code quality.
 
-*0.0.1 — April 20, 2015*
+**0.0.1 — April 20, 2015**
 
 * Initial version
 * supports two api endpoints, `info` and `analyze`

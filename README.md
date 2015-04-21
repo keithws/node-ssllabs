@@ -38,6 +38,8 @@ node-ssllabs is available under the [MIT License][2].
 
 * added support for the `getEndpointData` api endpoint.
 * added support for the `getStatusCodes` api endpoint.
+* improved error reporting.
+* improved code quality.
 
 *0.0.1 — April 20, 2015*
 

@@ -122,6 +122,23 @@ describe("ssllabs", function () {
 				done();
 			});
 		});
+
+		it("should scan a host by just specifing the hostname", function (done) {
+			ssllabs.scan("ssllabs.com", function (err, host) {
+				if (err) {
+					throw err;
+				}
+				host.status.should.be.ok;
+				host.status.should.equal("READY");
+				host.endpoints.length.should.be.above(0);
+				host.endpoints.forEach(function (endpoint) {
+					endpoint.grade.should.be.ok;
+					endpoint.grade.should.not.be.empty;
+				});
+				done();
+			});
+		});
+
 	});
 
 });

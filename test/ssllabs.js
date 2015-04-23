@@ -4,7 +4,8 @@
 
 var should = require("should"),
 	mocha = require("mocha"),
-	ssllabs = require("../lib/ssllabs.js");
+	ssllabs = require("../lib/ssllabs.js"),
+	async = require("async");
 
 var describe = mocha.describe,
 	it = mocha.it;
@@ -137,6 +138,33 @@ describe("ssllabs", function () {
 				});
 				done();
 			});
+		});
+
+		it("should scan two hosts in parallel", function (done) {
+			async.parallel([
+				function (callback) {
+					ssllabs.scan("ssllabs.com", function (err, host) {
+						if (err) {
+							callback(err, null);
+						}
+						host.status.should.be.ok;
+						host.status.should.equal("READY");
+						host.host.should.equal("ssllabs.com");
+						callback(null, host);
+					});
+				},
+				function (callback) {
+					ssllabs.scan("feistyduck.com", function (err, host) {
+						if (err) {
+							callback(err, null);
+						}
+						host.status.should.be.ok;
+						host.status.should.equal("READY");
+						host.host.should.equal("feistyduck.com");
+						callback(null, host);
+					});
+				}
+			], done);
 		});
 
 	});

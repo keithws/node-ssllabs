@@ -58,7 +58,6 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Todo
 
-* add test for lost context in parallel scans
 * add option to specify an array of hosts to scan
 * add support for [access rate and rate limiting][4]
 * add test if `startNew` and `fromCache` options are both true
@@ -69,6 +68,7 @@ node-ssllabs is available under the [MIT License][2].
 *0.4.0 — April 23, 2015*
 
 * add option to only specify a hostname for scanning
+* add test for lost context in parallel scans
 
 *0.3.0 — April 21, 2015*
 

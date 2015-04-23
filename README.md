@@ -12,17 +12,22 @@ A node.js library for the [SSL Labs API][1].
 
 	var ssllabs = require("node-ssllabs");
 	
-	var options = {
-		"host": "ssllabs.com"
-	};
-	
-	ssllabs.scan(options, function (err, host) {
+	ssllabs.scan("ssllabs.com", function (err, host) {
 		console.dir(host);
 	});
 
 ## Advanced Usage
 
 	var ssllabs = require("node-ssllabs");
+	
+	var options = {
+		"host": "ssllabs.com",
+		"startNew": true
+	};
+	
+	ssllabs.scan(options, function (err, host) {
+		console.dir(host);
+	});
 	
 	ssllabs.info(function (err, info) {
 		console.dir(info);
@@ -53,8 +58,8 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Todo
 
+* add test for lost context in parallel scans
 * add option to specify an array of hosts to scan
-* check for lost context
 * add support for [access rate and rate limiting][4]
 * add test if `startNew` and `fromCache` options are both true
 * have the `scan` function emit events for polling progress

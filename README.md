@@ -16,13 +16,35 @@ A node.js library for the [SSL Labs API][1].
 		console.dir(host);
 	});
 
+## Test Usage
+
+Testing with [Mocha][5] and [Should.js][6].
+
+	var ssllabs = require("node-ssllabs"),
+		should = require("should");
+	
+	describe("ssllabs.com", function () {
+		it("should get an A+", function (done) {
+			ssllabs.scan("ssllabs.com", function (err, host) {
+				if (err) {
+					throw err;
+				}
+				host.endpoints.forEach(function (endpoint) {
+					endpoint.grade.should.equal("A+");
+				});
+				done();
+			});
+		});
+	});
+
 ## Advanced Usage
 
 	var ssllabs = require("node-ssllabs");
 	
 	var options = {
 		"host": "ssllabs.com",
-		"startNew": true
+		"fromCache": true,
+		"maxAge": 24
 	};
 	
 	ssllabs.scan(options, function (err, host) {
@@ -34,7 +56,11 @@ A node.js library for the [SSL Labs API][1].
 	});
 	
 	var options = {
-		"host": "ssllabs.com"
+		"host": "ssllabs.com",
+		"publish": true,
+		"startNew": true,
+		"all": "done",
+		"ignoreMismatch": true
 	};
 	ssllabs.analyze(options, function (err, host) {
 		console.dir(host);
@@ -60,15 +86,16 @@ node-ssllabs is available under the [MIT License][2].
 
 * add option to specify an array of hosts to scan
 * add support for [access rate and rate limiting][4]
-* add test if `startNew` and `fromCache` options are both true
 * have the `scan` function emit events for polling progress
 
 ## Change Log
 
 *0.4.0 — April 23, 2015*
 
-* add option to only specify a hostname for scanning
-* add test for lost context in parallel scans
+* added option to only specify a hostname for scanning
+* added test for lost context in parallel scans
+* added test if `startNew` and `fromCache` options are both true
+* added additional parameter tests and verification
 
 *0.3.0 — April 21, 2015*
 
@@ -94,3 +121,5 @@ node-ssllabs is available under the [MIT License][2].
   [2]: https://github.com/keithws/node-ssllabs/blob/master/LICENSE
   [3]: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md#protocol-usage
   [4]: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md#access-rate-and-rate-limiting
+  [5]: http://mochajs.org
+  [6]: http://shouldjs.github.io

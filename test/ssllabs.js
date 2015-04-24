@@ -167,6 +167,112 @@ describe("ssllabs", function () {
 			], done);
 		});
 
+		describe("analyze call", function () {
+
+			it("should throw an error if startNew and fromCache are both true", function (done) {
+				var options = {
+					host: "ssllabs.com",
+					startNew: true,
+					fromCache: true
+				};
+				ssllabs.analyze.bind(null, options).should.throw("fromCache cannot be used at the same time as the startNew parameter.");
+				done();
+			});
+
+			it("should throw an error if fromCache is specified but maxAge is not", function (done) {
+				var options = {
+					host: "ssllabs.com",
+					fromCache: true
+				};
+				ssllabs.analyze.bind(null, options).should.throw();
+
+				options = {
+					host: "ssllabs.com",
+					fromCache: true,
+					maxAge: null
+				};
+				ssllabs.analyze.bind(null, options).should.throw();
+				done();
+			});
+
+			it("should throw an error if maxAge parameter is not a positive integer", function (done) {
+				var options = {
+					host: "ssllabs.com",
+					fromCache: true,
+					maxAge: NaN
+				};
+				ssllabs.analyze.bind(null, options).should.throw();
+				options.maxAge = -1;
+				ssllabs.analyze.bind(null, options).should.throw();
+				options.maxAge = Infinity;
+				ssllabs.analyze.bind(null, options).should.throw();
+				options.maxAge = "x";
+				ssllabs.analyze.bind(null, options).should.throw();
+				options.maxAge = 1;
+				ssllabs.analyze.bind(null, options).should.not.throw();
+				options.maxAge = 17532;
+				ssllabs.analyze.bind(null, options).should.not.throw();
+				done();
+			});
+
+			it("should throw an error if all parameter is not on, off, or done", function (done) {
+				var options = {
+					host: "ssllabs.com",
+					fromCache: true,
+					maxAge: 24,
+					all: "all"
+				};
+				ssllabs.analyze.bind(null, options).should.throw();
+				done();
+			});
+
+		});
+
+		describe("options", function () {
+			it("should accept string values and native values for options", function (done) {
+				var options = {
+					host: "ssllabs.com",
+					s: "127.0.0.1",
+					publish: "on",
+					startNew: "on",
+					fromCache: "on",
+					maxAge: "24",
+					all: "done",
+					ignoreMismatch: "on"
+				};
+				ssllabs.normalizeOptions(options).should.eql({
+					host: "ssllabs.com",
+					s: "127.0.0.1",
+					publish: true,
+					startNew: true,
+					fromCache: true,
+					maxAge: 24,
+					all: "done",
+					ignoreMismatch: true
+				});
+				options = {
+					host: "ssllabs.com",
+					s: "127.0.0.1",
+					publish: "off",
+					startNew: "off",
+					fromCache: "off",
+					maxAge: "24",
+					all: "done",
+					ignoreMismatch: "off"
+				};
+				ssllabs.normalizeOptions(options).should.eql({
+					host: "ssllabs.com",
+					s: "127.0.0.1",
+					publish: false,
+					startNew: false,
+					fromCache: false,
+					maxAge: 24,
+					all: "done",
+					ignoreMismatch: false
+				});
+				done();
+			});
+		});
 	});
 
 });

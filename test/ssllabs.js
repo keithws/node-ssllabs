@@ -13,6 +13,9 @@ var describe = mocha.describe,
 describe("ssllabs", function () {
 
 	describe("library", function () {
+		// because most of these tests wait for network responses
+		this.timeout(1600);
+		this.slow(400);
 
 		it("should check SSL Labs availability", function (done) {
 			ssllabs.info(function (err, info) {
@@ -101,8 +104,8 @@ describe("ssllabs", function () {
 		it("should invoke analyze and poll until the assessment is finished (slow)", function (done) {
 			var options;
 
-			this.timeout(2 * 60 * 1000);
-			this.slow(60 * 1000);
+			this.timeout(4 * 1.5 * 60 * 1000);
+			this.slow(1.5 * 60 * 1000);
 
 			options = {
 				host: "ssllabs.com",
@@ -171,6 +174,9 @@ describe("ssllabs", function () {
 		});
 
 		describe("analyze call", function () {
+			// these test do not wait for network responses
+			this.timeout(16);
+			this.slow(4);
 
 			it("should throw an error if startNew and fromCache are both true", function (done) {
 				var options = {

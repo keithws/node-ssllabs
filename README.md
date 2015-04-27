@@ -84,11 +84,15 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Todo
 
-* added support for [access rate and rate limiting][4]
-* added option to specify an array of hosts to scan
+* add support for [access rate and rate limiting][4]
+* add option to specify an array of hosts to scan
 * have the `scan` function emit events for polling progress
 
 ## Change Log
+
+*0.4.2 — April 27, 2015*
+
+* added call to `info` before calling `analyze` in the `scan` function
 
 *0.4.1 — April 27, 2015*
 

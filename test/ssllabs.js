@@ -98,7 +98,7 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should invoke analyze and poll until the assessment is finished", function (done) {
+		it("should invoke analyze and poll until the assessment is finished (slow)", function (done) {
 			var options;
 
 			this.timeout(2 * 60 * 1000);
@@ -140,8 +140,22 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should scan two hosts in parallel", function (done) {
+		it("should scan two hosts in parallel (slow)", function (done) {
+			this.timeout(2 * 60 * 1000);
+			this.slow(60 * 1000);
+
 			async.parallel([
+				function (callback) {
+					ssllabs.scan({host: "feistyduck.com", startNew: true}, function (err, host) {
+						if (err) {
+							callback(err, null);
+						}
+						host.status.should.be.ok;
+						host.status.should.equal("READY");
+						host.host.should.equal("feistyduck.com");
+						callback(null, host);
+					});
+				},
 				function (callback) {
 					ssllabs.scan("ssllabs.com", function (err, host) {
 						if (err) {
@@ -150,17 +164,6 @@ describe("ssllabs", function () {
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
 						host.host.should.equal("ssllabs.com");
-						callback(null, host);
-					});
-				},
-				function (callback) {
-					ssllabs.scan("feistyduck.com", function (err, host) {
-						if (err) {
-							callback(err, null);
-						}
-						host.status.should.be.ok;
-						host.status.should.equal("READY");
-						host.host.should.equal("feistyduck.com");
 						callback(null, host);
 					});
 				}

@@ -87,8 +87,15 @@ node-ssllabs is available under the [MIT License][2].
 * add support for [access rate and rate limiting][4]
 * add option to specify an array of hosts to scan
 * have the `scan` function emit events for polling progress
+* figure out if the maxAge parameter is required with the fromCache parameter
 
 ## Change Log
+
+*0.4.3 — May 1, 2015*
+
+* removed requirement that maxAge must be set if fromCache is set
+* added check that fromCache is set if maxAge is set
+* fixed bug where NaN was accepted for the maxAge parameter
 
 *0.4.2 — April 27, 2015*
 

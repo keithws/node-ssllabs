@@ -188,17 +188,17 @@ describe("ssllabs", function () {
 				done();
 			});
 
-			it("should throw an error if fromCache is specified but maxAge is not", function (done) {
+			it("should throw an error if maxAge is specified but fromCache is not", function (done) {
 				var options = {
 					host: "ssllabs.com",
-					fromCache: true
+					maxAge: 24
 				};
 				ssllabs.analyze.bind(null, options).should.throw();
 
 				options = {
 					host: "ssllabs.com",
-					fromCache: true,
-					maxAge: null
+					fromCache: false,
+					maxAge: 24
 				};
 				ssllabs.analyze.bind(null, options).should.throw();
 				done();
@@ -218,9 +218,9 @@ describe("ssllabs", function () {
 				options.maxAge = "x";
 				ssllabs.analyze.bind(null, options).should.throw();
 				options.maxAge = 1;
-				ssllabs.analyze.bind(null, options).should.not.throw();
+				ssllabs.verifyOptions.bind(null, options).should.not.throw();
 				options.maxAge = 17532;
-				ssllabs.analyze.bind(null, options).should.not.throw();
+				ssllabs.verifyOptions.bind(null, options).should.not.throw();
 				done();
 			});
 

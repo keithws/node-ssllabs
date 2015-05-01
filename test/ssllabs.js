@@ -42,7 +42,6 @@ describe("ssllabs", function () {
 			options = {
 				all: "done",
 				host: "ssllabs.com",
-				publish: true,
 				startNew: false
 			};
 
@@ -60,8 +59,7 @@ describe("ssllabs", function () {
 
 			options = {
 				all: "done",
-				host: "ssllabs.com",
-				publish: true
+				host: "ssllabs.com"
 			};
 
 			ssllabs.analyze(options, function (err, host) {
@@ -108,7 +106,7 @@ describe("ssllabs", function () {
 			this.slow(1.5 * 60 * 1000);
 
 			options = {
-				host: "ssllabs.com",
+				host: "feistyduck.com",
 				startNew: true
 			};
 
@@ -127,7 +125,7 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should scan a host by just specifing the hostname", function (done) {
+		it("should scan a host by just specifying the hostname", function (done) {
 			ssllabs.scan("ssllabs.com", function (err, host) {
 				if (err) {
 					throw err;
@@ -180,7 +178,7 @@ describe("ssllabs", function () {
 
 			it("should throw an error if startNew and fromCache are both true", function (done) {
 				var options = {
-					host: "ssllabs.com",
+					host: "feistyduck.com",
 					startNew: true,
 					fromCache: true
 				};

@@ -91,6 +91,11 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
+*develop branch — May 5, 2015*
+
+* added test cases for tracking access rate and rate limiting
+* updated analyze call to only start new assessments when current assessments is less than the max assessments
+
 *0.4.3 — May 1, 2015*
 
 * removed requirement that maxAge must be set if fromCache is set

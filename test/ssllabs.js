@@ -171,6 +171,144 @@ describe("ssllabs", function () {
 			], done);
 		});
 
+		describe("access rate and rate limiting", function () {
+
+			it("should track access rate", function (done) {
+				// because most of these tests wait for network responses
+				// multiply by the number of hosts to test
+				this.timeout(6 * 1600);
+				this.slow(6 * 400);
+
+				ssllabs.info(function (err, info) {
+					if (err) {
+						throw err;
+					}
+					info.should.be.ok;
+					info.currentAssessments.should.be.a.Number;
+					info.maxAssessments.should.be.a.Number;
+					async.series([
+						function (callback) {
+							ssllabs.analyze({host: "feistyduck.com", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(0);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.analyze({host: "qualys.com", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(1);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.analyze({host: "keithws.net", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(2);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.analyze({host: "trustworthyinternet.org", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(3);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.analyze({host: "google.com", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(4);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.analyze({host: "amazon.com", startNew: true}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.api.info.maxAssessments.should.be.a.Number;
+								ssllabs.api.info.currentAssessments.should.equal(5);
+								callback();
+							});
+						},
+						function (callback) {
+							ssllabs.info(function () {
+								ssllabs.api.info.currentAssessments.should.equal(6);
+								callback();
+							});
+						}
+					], done);
+				});
+			});
+
+			describe("when the maximum number of assessments are in progress", function () {
+
+				it("should not start a new assessment", function (done) {
+					ssllabs.api.info.currentAssessments = 1;
+					ssllabs.api.info.maxAssessments = 1;
+					ssllabs.analyze({host: "feistyduck.com", startNew: true}, function (err, host) {
+						err.should.be.ok;
+						should(host).not.be.ok;
+						done();
+					});
+				});
+
+				it ("should be able to follow previously initiated assessments", function (done) {
+					async.series([
+						function (callback) {
+							ssllabs.info(function (err, info) {
+								if (err) {
+									callback(err, null);
+								}
+								ssllabs.analyze({host: "feistyduck.com", startNew: true}, function (err, host) {
+									if (err) {
+										callback(err, null);
+									}
+									host.should.be.ok;
+									callback(null, host);
+								});
+							});
+						},
+						function (callback) {
+							ssllabs.api.info.currentAssessments = 1;
+							ssllabs.api.info.maxAssessments = 1;
+							ssllabs.analyze({host: "feistyduck.com"}, function (err, host) {
+								if (err) {
+									callback(err, null);
+								}
+								host.should.be.ok;
+								callback(null, host);
+							});
+						}
+					], done);
+				});
+
+				it("should be able to retrieve assessment results from the cache", function (done) {
+					ssllabs.api.info.currentAssessments = 1;
+					ssllabs.api.info.maxAssessments = 1;
+					ssllabs.analyze({host: "ssllabs.com", fromCache: true}, done);
+				});
+
+			});
+
+		});
+
 		describe("analyze call", function () {
 			// these test do not wait for network responses
 			this.timeout(16);

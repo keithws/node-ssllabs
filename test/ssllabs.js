@@ -41,7 +41,7 @@ describe("ssllabs", function () {
 
 			options = {
 				all: "done",
-				host: "ssllabs.com",
+				host: "www.ssllabs.com",
 				startNew: false
 			};
 
@@ -59,7 +59,7 @@ describe("ssllabs", function () {
 
 			options = {
 				all: "done",
-				host: "ssllabs.com"
+				host: "www.ssllabs.com"
 			};
 
 			ssllabs.analyze(options, function (err, host) {
@@ -75,7 +75,7 @@ describe("ssllabs", function () {
 			var options;
 
 			options = {
-				host: "ssllabs.com",
+				host: "www.ssllabs.com",
 				s: "64.41.200.100"
 			};
 
@@ -137,7 +137,7 @@ describe("ssllabs", function () {
 		});
 
 		it("should scan a host by just specifying the hostname", function (done) {
-			ssllabs.scan("ssllabs.com", function (err, host) {
+			ssllabs.scan("www.ssllabs.com", function (err, host) {
 				if (err) {
 					throw err;
 				}
@@ -169,13 +169,13 @@ describe("ssllabs", function () {
 					});
 				},
 				function (callback) {
-					ssllabs.scan("ssllabs.com", function (err, host) {
+					ssllabs.scan("www.ssllabs.com", function (err, host) {
 						if (err) {
 							callback(err, null);
 						}
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
-						host.host.should.equal("ssllabs.com");
+						host.host.should.equal("www.ssllabs.com");
 						callback(null, host);
 					});
 				}
@@ -199,13 +199,13 @@ describe("ssllabs", function () {
 
 			it("should throw an error if maxAge is specified but fromCache is not", function (done) {
 				var options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					maxAge: 24
 				};
 				ssllabs.analyze.bind(null, options).should.throw();
 
 				options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					fromCache: false,
 					maxAge: 24
 				};
@@ -215,7 +215,7 @@ describe("ssllabs", function () {
 
 			it("should throw an error if maxAge parameter is not a positive integer", function (done) {
 				var options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					fromCache: true,
 					maxAge: NaN
 				};
@@ -235,7 +235,7 @@ describe("ssllabs", function () {
 
 			it("should throw an error if all parameter is not on, off, or done", function (done) {
 				var options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					fromCache: true,
 					maxAge: 24,
 					all: "all"
@@ -249,7 +249,7 @@ describe("ssllabs", function () {
 		describe("options", function () {
 			it("should accept string values and native values for options", function (done) {
 				var options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					s: "127.0.0.1",
 					publish: "on",
 					startNew: "on",
@@ -259,7 +259,7 @@ describe("ssllabs", function () {
 					ignoreMismatch: "on"
 				};
 				ssllabs.normalizeOptions(options).should.eql({
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					s: "127.0.0.1",
 					publish: true,
 					startNew: true,
@@ -269,7 +269,7 @@ describe("ssllabs", function () {
 					ignoreMismatch: true
 				});
 				options = {
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					s: "127.0.0.1",
 					publish: "off",
 					startNew: "off",
@@ -279,13 +279,33 @@ describe("ssllabs", function () {
 					ignoreMismatch: "off"
 				};
 				ssllabs.normalizeOptions(options).should.eql({
-					host: "ssllabs.com",
+					host: "www.ssllabs.com",
 					s: "127.0.0.1",
 					publish: false,
 					startNew: false,
 					fromCache: false,
 					maxAge: 24,
 					all: "done",
+					ignoreMismatch: false
+				});
+				options = {
+					host: "www.ssllabs.com",
+					s: "127.0.0.1",
+					publish: "ON",
+					startNew: "oN",
+					fromCache: "Off",
+					maxAge: "24",
+					all: true,
+					ignoreMismatch: "off"
+				};
+				ssllabs.normalizeOptions(options).should.eql({
+					host: "www.ssllabs.com",
+					s: "127.0.0.1",
+					publish: true,
+					startNew: true,
+					fromCache: false,
+					maxAge: 24,
+					all: "on",
 					ignoreMismatch: false
 				});
 				done();

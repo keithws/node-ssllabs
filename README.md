@@ -12,7 +12,7 @@ A node.js library for the [SSL Labs API][1].
 
 	var ssllabs = require("node-ssllabs");
 	
-	ssllabs.scan("ssllabs.com", function (err, host) {
+	ssllabs.scan("www.ssllabs.com", function (err, host) {
 		console.dir(host);
 	});
 
@@ -23,9 +23,9 @@ Testing with [Mocha][5] and [Should.js][6].
 	var ssllabs = require("node-ssllabs"),
 		should = require("should");
 	
-	describe("ssllabs.com", function () {
+	describe("www.ssllabs.com", function () {
 		it("should get an A+", function (done) {
-			ssllabs.scan("ssllabs.com", function (err, host) {
+			ssllabs.scan("www.ssllabs.com", function (err, host) {
 				if (err) {
 					throw err;
 				}
@@ -41,13 +41,11 @@ Testing with [Mocha][5] and [Should.js][6].
 
 	var ssllabs = require("node-ssllabs");
 	
-	var options = {
-		"host": "ssllabs.com",
+	ssllabs.scan({
+		"host": "www.ssllabs.com",
 		"fromCache": true,
 		"maxAge": 24
-	};
-	
-	ssllabs.scan(options, function (err, host) {
+	}, function (err, host) {
 		console.dir(host);
 	});
 	
@@ -55,28 +53,41 @@ Testing with [Mocha][5] and [Should.js][6].
 		console.dir(info);
 	});
 	
-	var options = {
-		"host": "ssllabs.com",
+	ssllabs.analyze({
+		"host": "www.ssllabs.com",
 		"publish": true,
 		"startNew": true,
-		"all": "done",
-		"ignoreMismatch": true
-	};
-	ssllabs.analyze(options, function (err, host) {
+		"all": "done"
+	}, function (err, host) {
 		console.dir(host);
 	});
 	
-	var options = {
-		"host": "ssllabs.com",
-		"s": "64.41.200.100"
-	};
-	ssllabs.getEndpointData(options, function (err, endpointData) {
+	ssllabs.analyze({
+		"host": "www.ssllabs.com",
+		"fromCache": true,
+		"maxAge": 72,
+		"all": "on",
+		"ignoreMismatch": true
+	}, function (err, host) {
+		console.dir(host);
+	});
+	
+	ssllabs.getEndpointData({
+		"host": "www.ssllabs.com",
+		"s": "64.41.200.100",
+		"fromCache": true
+	}, function (err, endpointData) {
 		console.dir(endpointData);
 	});
 	
 	ssllabs.getStatusCodes(function (err, statusCodes) {
 		console.dir(statusCodes);
 	});
+	
+	ssllabs.getRootCertsRaw(function (err, rootCertsRaw) {
+		console.dir(rootCertsRaw);
+	});
+
 
 ## License
 

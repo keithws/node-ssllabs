@@ -3,12 +3,8 @@
 "use strict";
 
 var should = require("should"),
-	mocha = require("mocha"),
 	ssllabs = require("../lib/ssllabs.js"),
 	async = require("async");
-
-var describe = mocha.describe,
-	it = mocha.it;
 
 describe("ssllabs", function () {
 
@@ -23,15 +19,19 @@ describe("ssllabs", function () {
 					return done(err);
 				}
 				info.should.have.properties([
+					"clientMaxAssessments",
 					"criteriaVersion",
 					"currentAssessments",
 					"engineVersion",
 					"maxAssessments",
-					"messages"
+					"messages",
+					"newAssessmentCoolOff"
 				]);
-				info.currentAssessments.should.be.a.number;
-				info.maxAssessments.should.be.a.number;
-				info.messages.should.be.an.array;
+				info.clientMaxAssessments.should.be.a.Number;
+				info.currentAssessments.should.be.a.Number;
+				info.maxAssessments.should.be.a.Number;
+				info.messages.should.be.an.Array;
+				info.newAssessmentCoolOff.should.be.a.Number;
 				done();
 			});
 		});
@@ -95,6 +95,17 @@ describe("ssllabs", function () {
 					return done(err);
 				}
 				statusCodes.should.have.property("statusDetails");
+				done();
+			});
+		});
+
+		it("should retrieve the root certificates used for trust validation", function (done) {
+			ssllabs.getRootCertsRaw(function (err, rootCertsRaw) {
+				if (err) {
+					return done(err);
+				}
+				rootCertsRaw.should.be.ok;
+				rootCertsRaw.should.be.a.String;
 				done();
 			});
 		});

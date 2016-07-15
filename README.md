@@ -105,9 +105,9 @@ node-ssllabs is available under the [MIT License][2].
 
 *0.5.0 — July 14, 2016*
 
-* added support for new API call, getRootCertsRaw
+* added support for new API call, `getRootCertsRaw`
 * improved testing with Mocha
-* improved normalizeOptions() function
+* improved `normalizeOptions` function
 * updated documentation
 
 *0.4.3 — May 1, 2015*

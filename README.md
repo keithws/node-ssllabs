@@ -103,7 +103,7 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
-*0.5.0 – July 14, 2016*
+*0.5.0 — July 14, 2016*
 
 * added support for new API call, getRootCertsRaw
 * improved testing with Mocha

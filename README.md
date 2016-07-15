@@ -95,7 +95,6 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Todo
 
-* add support for new (experimental) API call: getRootCertsRaw
 * add support for [access rate and rate limiting][4]
 * incorporate new info field, newAssessmentCoolOff, to access rate and rate limiting
 * add option to specify an array of hosts to scan
@@ -103,6 +102,13 @@ node-ssllabs is available under the [MIT License][2].
 * figure out if the maxAge parameter is required with the fromCache parameter
 
 ## Change Log
+
+*0.5.0 – July 14, 2016*
+
+* added support for new API call, getRootCertsRaw
+* improved testing with Mocha
+* improved normalizeOptions() function
+* updated documentation
 
 *0.4.3 — May 1, 2015*
 

@@ -8,25 +8,27 @@
     "test": "test"
   },
   "scripts": {
-    "lint": "jshint **/*.js",
+    "lint": "eslint \"**/*.js\"",
     "pretest": "npm run lint",
     "test": "mocha"
   },
   "keywords": [
     "ssllabs",
-    "api",
-    "ssl",
-    "scan"
+    "API",
+    "SSL",
+    "TLS",
+    "scan",
+    "test"
   ],
   "author": "Keith Shaw",
   "license": "MIT",
   "devDependencies": {
-    "jshint": "^2.7.0",
-    "mocha": "^2.2.4",
-    "should": "^6.0.1"
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4",
+    "should": "^13.2.3"
   },
   "dependencies": {
-    "async": "^0.9.0",
-    "underscore": "^1.8.3"
+    "async": "^2.6.2",
+    "underscore": "^1.9.1"
   }
 }

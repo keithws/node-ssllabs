@@ -1,3 +1,6 @@
+# Ignore package-lock.json for personal reasons
+package-lock.json
+
 # Logs
 logs
 *.log

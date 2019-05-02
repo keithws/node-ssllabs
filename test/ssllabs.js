@@ -1,10 +1,9 @@
-/*jslint node: true */
-/*jslint expr: true */
+/* eslint-env node, mocha */
 "use strict";
 
-var should = require("should"),
-	ssllabs = require("../lib/ssllabs.js"),
-	async = require("async");
+require("should");
+const ssllabs = require("../lib/ssllabs.js");
+const async = require("async");
 
 describe("ssllabs", function () {
 

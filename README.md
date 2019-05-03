@@ -88,6 +88,22 @@ Testing with [Mocha][5] and [Should.js][6].
 		console.dir(rootCertsRaw);
 	});
 
+	ssllabs.getRootCertsRaw({
+		trustStore: 5
+	}, function (err, rootCertsRaw) {
+		console.dir(rootCertsRaw);
+	});
+
+	ssllabs.getRootCerts(function (err, rootCerts) {
+		console.dir(rootCerts);
+	});
+
+	ssllabs.getRootCerts({
+		trustStore: 5
+	}, function (err, rootCerts) {
+		console.dir(rootCerts);
+	});
+
 
 ## License
 
@@ -95,13 +111,26 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Todo
 
-* add support for [access rate and rate limiting][4]
+* add (more) support for [access rate and rate limiting][4]
 * incorporate new info field, newAssessmentCoolOff, to access rate and rate limiting
 * add option to specify an array of hosts to scan
 * have the `scan` function emit events for polling progress
 * figure out if the maxAge parameter is required with the fromCache parameter
+* promise-ify and modernize
+* add User Agent String to all requests
+* make API version changeable (maybe?) with createClient()?
 
 ## Change Log
+
+*0.6.0— May 2, 2019*
+
+* updated API endpoint from v2 to v3
+* updated dependencies
+* switched from JSHint to eslint for syntax checking
+* fixed typos
+* added basic support for access rate and rate limiting to `scan()`
+* added support for the `trustStore` parameter to the `getRootCertsRaw()` call
+* added `getRootCerts()` call that returns the data as a plain-old object
 
 *0.5.0 — July 14, 2016*
 

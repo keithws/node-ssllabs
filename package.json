@@ -12,6 +12,9 @@
     "pretest": "npm run lint",
     "test": "mocha"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "keywords": [
     "ssllabs",
     "API",
@@ -29,6 +32,5 @@
     "should": "^13.2.3"
   },
   "dependencies": {
-    "underscore": "^1.9.1"
   }
 }

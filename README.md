@@ -127,10 +127,15 @@ node-ssllabs is available under the [MIT License][2].
 * promise-ify and modernize
 * add User Agent String to all requests
 * make API version changeable (maybe?) with createClient()?
-* minimize dependencies
 * add support for HTTP proxy settings
 
 ## Change Log
+
+*1.0.0— May 3, 2019*
+
+* moved async to dev dependency (as it should have been)
+* removed underscore dependency (was very lightly used)
+* added dependency on node v4.0.0 for Object.assign
 
 *0.6.0— May 2, 2019*
 

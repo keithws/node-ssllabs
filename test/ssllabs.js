@@ -18,7 +18,6 @@ describe("ssllabs", function () {
 					return done(err);
 				}
 				info.should.have.properties([
-					"clientMaxAssessments",
 					"criteriaVersion",
 					"currentAssessments",
 					"engineVersion",
@@ -26,7 +25,6 @@ describe("ssllabs", function () {
 					"messages",
 					"newAssessmentCoolOff"
 				]);
-				info.clientMaxAssessments.should.be.a.Number;
 				info.currentAssessments.should.be.a.Number;
 				info.maxAssessments.should.be.a.Number;
 				info.messages.should.be.an.Array;
@@ -152,7 +150,7 @@ describe("ssllabs", function () {
 		});
 
 		it("should scan two hosts in parallel (slow)", function (done) {
-			this.timeout(2 * 60 * 1000);
+			this.timeout(4 * 60 * 1000);
 			this.slow(60 * 1000);
 
 			async.parallel([

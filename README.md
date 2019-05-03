@@ -2,6 +2,14 @@
 
 A node.js library for the [SSL Labs API][1].
 
+[![npm version](https://badge.fury.io/js/node-ssllabs.svg)](https://badge.fury.io/js/node-ssllabs)
+[![dependencies](https://img.shields.io/david/keithws/node-ssllabs.svg)](https://david-dm.org/keithws/node-ssllabs)
+[![dev dependencies](https://img.shields.io/david/dev/keithws/node-ssllabs.svg)](https://david-dm.org/keithws/node-ssllabs?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/keithws/node-ssllabs/badge.svg)](https://snyk.io/test/github/keithws/node-ssllabs)
+![npm downloads per month](https://img.shields.io/npm/dm/node-ssllabs.svg)
+[![npm license](https://img.shields.io/npm/l/node-ssllabs.svg?color=blue)](https://github.com/keithws/node-ssllabs/blob/master/LICENSE)
+
+
 > SSL Labs APIs expose the complete SSL/TLS server testing functionality in a programmatic fashion, allowing for scheduled and bulk assessment. We are making the APIs available to encourage site operators to regularly test their server configuration.
 
 ## Install
@@ -119,6 +127,8 @@ node-ssllabs is available under the [MIT License][2].
 * promise-ify and modernize
 * add User Agent String to all requests
 * make API version changeable (maybe?) with createClient()?
+* minimize dependencies
+* add support for HTTP proxy settings
 
 ## Change Log
 

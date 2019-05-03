@@ -96,13 +96,51 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should retrieve the root certificates used for trust validation", function (done) {
+		it("should retrieve the (raw) root certificates used for trust validation", function (done) {
 			ssllabs.getRootCertsRaw(function (err, rootCertsRaw) {
 				if (err) {
 					return done(err);
 				}
 				rootCertsRaw.should.be.ok;
 				rootCertsRaw.should.be.a.String;
+				done();
+			});
+		});
+
+		it("should retrieve the (raw) root certificates (Windows) used for trust validation", function (done) {
+			ssllabs.getRootCertsRaw({ trustStore: 5 }, function (err, rootCertsRaw) {
+				if (err) {
+					return done(err);
+				}
+				rootCertsRaw.should.be.ok;
+				rootCertsRaw.should.be.a.String;
+				rootCertsRaw.should.match(/Trust Store: Windows/);
+				done();
+			});
+		});
+
+		it("should retrieve the root certificates used for trust validation", function (done) {
+			ssllabs.getRootCerts(function (err, certs) {
+				if (err) {
+					return done(err);
+				}
+				certs.should.be.ok;
+				certs.should.be.an.Array;
+				var firstCert = certs[0];
+				firstCert.should.have.properties([
+					"name",
+					"subject",
+					"keyType",
+					"keyLength",
+					"notBefore",
+					"notAfter",
+					"certificate"
+				]);
+				firstCert.keyType.should.be.a.String;
+				firstCert.keyLength.should.be.a.Number;
+				firstCert.notBefore.should.be.a.Date;
+				firstCert.notAfter.should.be.a.Date;
+				firstCert.certificate.should.be.a.String;
 				done();
 			});
 		});

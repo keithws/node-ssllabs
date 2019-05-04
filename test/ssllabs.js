@@ -2,19 +2,16 @@
 "use strict";
 
 require("should");
-const ssllabs = require("../lib/ssllabs.js");
-const async = require("async");
+var ssllabs = require("../lib/ssllabs.js");
+var async = require("async");
 
 describe("ssllabs", function () {
 
 	describe("analyze()", function () {
-		// these test do not wait for network responses
-		this.timeout(16);
-		this.slow(4);
 
 		it("should throw an error if startNew and fromCache are both true", function (done) {
 			var options = {
-				host: "feistyduck.com",
+				host: "www.ssllabs.com",
 				startNew: true,
 				fromCache: true
 			};
@@ -222,8 +219,8 @@ describe("ssllabs", function () {
 
 	describe("library", function () {
 		// because most of these tests wait for network responses
-		this.timeout(1600);
-		this.slow(400);
+		this.timeout(16 * 1000);
+		this.slow(4 * 1000);
 
 		it("info() should check SSL Labs availability", function (done) {
 			ssllabs.info(function (err, info) {
@@ -360,13 +357,11 @@ describe("ssllabs", function () {
 		});
 
 		it("should invoke analyze and poll until the assessment is finished (slow)", function (done) {
-			var options;
+			this.timeout(20 * 60 * 1000);
+			this.slow(2 * 60 * 1000);
 
-			this.timeout(4 * 1.5 * 60 * 1000);
-			this.slow(1.5 * 60 * 1000);
-
-			options = {
-				host: "feistyduck.com",
+			var options = {
+				host: "facebook.com",
 				startNew: true
 			};
 
@@ -387,7 +382,10 @@ describe("ssllabs", function () {
 		});
 
 		it("should scan a host by just specifying the hostname", function (done) {
-			ssllabs.scan("www.ssllabs.com", function (err, host) {
+			this.timeout(20 * 60 * 1000);
+			this.slow(2 * 60 * 1000);
+
+			ssllabs.scan("apple.com", function (err, host) {
 				if (err) {
 					done(err);
 					return;
@@ -404,29 +402,29 @@ describe("ssllabs", function () {
 		});
 
 		it("should scan two hosts in parallel (slow)", function (done) {
-			this.timeout(4 * 60 * 1000);
-			this.slow(60 * 1000);
+			this.timeout(20 * 60 * 1000);
+			this.slow(2 * 60 * 1000);
 
 			async.parallel([
 				function (callback) {
-					ssllabs.scan({host: "feistyduck.com", startNew: true}, function (err, host) {
+					ssllabs.scan({host: "amazon.com", startNew: true}, function (err, host) {
 						if (err) {
 							callback(err, null);
 						}
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
-						host.host.should.equal("feistyduck.com");
+						host.host.should.equal("amazon.com");
 						callback(null, host);
 					});
 				},
 				function (callback) {
-					ssllabs.scan("www.ssllabs.com", function (err, host) {
+					ssllabs.scan("google.com", function (err, host) {
 						if (err) {
 							callback(err, null);
 						}
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
-						host.host.should.equal("www.ssllabs.com");
+						host.host.should.equal("google.com");
 						callback(null, host);
 					});
 				}

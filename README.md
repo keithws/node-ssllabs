@@ -132,6 +132,14 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
+
+*1.0.1— May 3, 2019*
+
+* call callback with error instead of throwing
+* normalized error handling code patterns
+* reordered tests so the fast tests run before the slow tests
+* added more tests for error handling in getEndpointData() and getRootCertsRaw()
+
 *1.0.0— May 3, 2019*
 
 * moved async to dev dependency (as it should have been)

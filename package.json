@@ -1,6 +1,6 @@
 {
   "name": "node-ssllabs",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A node.js library for the SSL Labs API.",
   "keywords": [
     "ssllabs",
@@ -33,5 +33,6 @@
     "should": "^13.2.3"
   },
   "dependencies": {
+    "proxy-agent": "^3.1.0"
   }
 }

@@ -113,6 +113,10 @@ Testing with [Mocha][5] and [Should.js][6].
 	});
 
 
+## Proxy all requests via a tunneling agent
+
+As of version 1.1.0, this library will respect your `HTTPS_PROXY` environment variable and tunnel all requests to the specified URL. Compatible with all protocols supported by [proxy-agent](https://www.npmjs.com/package/proxy-agent).
+
 ## License
 
 node-ssllabs is available under the [MIT License][2].
@@ -124,12 +128,26 @@ node-ssllabs is available under the [MIT License][2].
 * add option to specify an array of hosts to scan
 * have the `scan` function emit events for polling progress
 * figure out if the maxAge parameter is required with the fromCache parameter
-* promise-ify and modernize
 * add User Agent String to all requests
 * make API version changeable (maybe?) with createClient()?
-* add support for HTTP proxy settings
+
+## TODO for next minor release
+
+* improve quality
+* resolve issues reported by code climate
+* add code coverage
+
+## TODO for next major release
+
+* promise-ify and modernize
+* refactor to be a Universal ES6 module that can be used client side and server side with the fetch and URL libraries
+* maintain support for using tunneling proxies (server side only?)
 
 ## Change Log
+
+*1.1.0— May 4, 2019*
+
+* added support for tunneling proxies via [proxy-agent](https://www.npmjs.com/package/proxy-agent)
 
 *1.0.2— May 3, 2019*
 

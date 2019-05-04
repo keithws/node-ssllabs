@@ -6,7 +6,6 @@ A node.js library for the [SSL Labs API][1].
 [![Build Status](https://travis-ci.org/keithws/node-ssllabs.svg?branch=master)](https://travis-ci.org/keithws/node-ssllabs)
 [![dependencies](https://img.shields.io/david/keithws/node-ssllabs.svg)](https://david-dm.org/keithws/node-ssllabs)
 ![npm downloads per month](https://img.shields.io/npm/dm/node-ssllabs.svg)
-[![install size](https://packagephobia.now.sh/badge?p=node-ssllabs)](https://packagephobia.now.sh/result?p=node-ssllabs)
 [![npm license](https://img.shields.io/npm/l/node-ssllabs.svg?color=blue)](https://github.com/keithws/node-ssllabs/blob/master/LICENSE)
 
 

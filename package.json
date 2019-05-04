@@ -1,6 +1,6 @@
 {
   "name": "node-ssllabs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A node.js library for the SSL Labs API.",
   "main": "index.js",
   "repository": "https://github.com/keithws/node-ssllabs.git",

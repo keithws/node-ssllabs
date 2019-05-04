@@ -131,6 +131,11 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
+*1.0.2— May 3, 2019*
+
+* smaller install
+* better testing
+* faster builds
 
 *1.0.1— May 3, 2019*
 

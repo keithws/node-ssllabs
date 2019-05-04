@@ -291,7 +291,8 @@ describe("ssllabs", function () {
 
 			ssllabs.getEndpointData(options, function (err, endpoint) {
 				if (err) {
-					throw err;
+					done(err);
+					return;
 				}
 				endpoint.statusMessage.should.be.ok;
 				endpoint.ipAddress.should.equal("64.41.200.100");
@@ -371,7 +372,8 @@ describe("ssllabs", function () {
 
 			ssllabs.scan(options, function (err, host) {
 				if (err) {
-					throw err;
+					done(err);
+					return;
 				}
 				host.status.should.be.ok;
 				host.status.should.equal("READY");
@@ -387,7 +389,8 @@ describe("ssllabs", function () {
 		it("should scan a host by just specifying the hostname", function (done) {
 			ssllabs.scan("www.ssllabs.com", function (err, host) {
 				if (err) {
-					throw err;
+					done(err);
+					return;
 				}
 				host.status.should.be.ok;
 				host.status.should.equal("READY");

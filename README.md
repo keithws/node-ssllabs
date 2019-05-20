@@ -2,10 +2,10 @@
 
 A node.js library for the [SSL Labs API][1].
 
-![npm version](https://img.shields.io/npm/v/node-ssllabs.svg)
+[![npm version](https://img.shields.io/npm/v/node-ssllabs.svg)](https://www.npmjs.com/package/node-ssllabs)
 [![Build Status](https://travis-ci.org/keithws/node-ssllabs.svg?branch=master)](https://travis-ci.org/keithws/node-ssllabs)
 [![dependencies](https://img.shields.io/david/keithws/node-ssllabs.svg)](https://david-dm.org/keithws/node-ssllabs)
-![npm downloads per month](https://img.shields.io/npm/dm/node-ssllabs.svg)
+[![npm downloads per month](https://img.shields.io/npm/dm/node-ssllabs.svg)](https://www.npmjs.com/package/node-ssllabs)
 [![npm license](https://img.shields.io/npm/l/node-ssllabs.svg?color=blue)](https://github.com/keithws/node-ssllabs/blob/master/LICENSE)
 
 
@@ -133,8 +133,8 @@ node-ssllabs is available under the [MIT License][2].
 ## TODO for next minor release
 
 * improve quality
-* resolve issues reported by code climate
 * add code coverage
+* resolve issues reported by code climate
 
 ## TODO for next major release
 

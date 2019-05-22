@@ -197,7 +197,7 @@ describe("ssllabs", function () {
 				host: "www.ssllabs.com",
 				s: "127.0.0.1",
 				publish: "ON",
-				startNew: "oN",
+				startNew: "On",
 				fromCache: "Off",
 				maxAge: "24",
 				all: true,

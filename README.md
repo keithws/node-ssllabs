@@ -128,13 +128,12 @@ node-ssllabs is available under the [MIT License][2].
 * add option to specify an array of hosts to scan
 * have the `scan` function emit events for polling progress
 * figure out if the maxAge parameter is required with the fromCache parameter
-* add User Agent String to all requests
 * make API version changeable (maybe?) with createClient()?
 
 ## TODO for next minor release
 
-* improve quality
-* resolve issues reported by code climate
+* don't use the global HTTP agent
+* add User Agent String to all requests
 
 ## TODO for next major release
 
@@ -143,6 +142,11 @@ node-ssllabs is available under the [MIT License][2].
 * maintain support for using tunneling proxies (server side only?)
 
 ## Change Log
+
+*1.1.2— May 22, 2019*
+
+* refactored code to reduce cognitive complexity
+* increased test coverage
 
 *1.1.1— May 21, 2019*
 

@@ -381,7 +381,7 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should scan a host by just specifying the hostname", function (done) {
+		it("should scan a host by just specifying the hostname (slow)", function (done) {
 			this.timeout(20 * 60 * 1000);
 			this.slow(2 * 60 * 1000);
 

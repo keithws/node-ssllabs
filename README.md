@@ -145,6 +145,11 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
+*1.1.1— May 21, 2019*
+
+* refactored code to eliminate some duplicate code
+* added test coverage reporting
+
 *1.1.0— May 4, 2019*
 
 * added support for tunneling proxies via [proxy-agent](https://www.npmjs.com/package/proxy-agent)

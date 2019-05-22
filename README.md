@@ -134,7 +134,6 @@ node-ssllabs is available under the [MIT License][2].
 ## TODO for next minor release
 
 * improve quality
-* add code coverage
 * resolve issues reported by code climate
 
 ## TODO for next major release

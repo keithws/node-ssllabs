@@ -1,6 +1,6 @@
 {
   "name": "node-ssllabs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A node.js library for the SSL Labs API.",
   "keywords": [
     "ssllabs",
@@ -16,9 +16,8 @@
   "scripts": {
     "lint": "eslint \"**/*.js\"",
     "pretest": "npm run lint",
-    "test": "mocha",
-    "test-with-coverage": "nyc --reporter=text mocha",
-    "coveralls": "npm run test-with-coverage && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --reporter=text mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "main": "index",
   "files": [

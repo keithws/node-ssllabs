@@ -4,9 +4,10 @@ A node.js library for the [SSL Labs API][1].
 
 [![npm version](https://img.shields.io/npm/v/node-ssllabs.svg)](https://www.npmjs.com/package/node-ssllabs)
 [![Build Status](https://travis-ci.org/keithws/node-ssllabs.svg?branch=master)](https://travis-ci.org/keithws/node-ssllabs)
+[![Coverage Status](https://coveralls.io/repos/github/keithws/node-ssllabs/badge.svg?branch=master)](https://coveralls.io/github/keithws/node-ssllabs?branch=master)
 [![dependencies](https://img.shields.io/david/keithws/node-ssllabs.svg)](https://david-dm.org/keithws/node-ssllabs)
 [![npm downloads per month](https://img.shields.io/npm/dm/node-ssllabs.svg)](https://www.npmjs.com/package/node-ssllabs)
-[![npm license](https://img.shields.io/npm/l/node-ssllabs.svg?color=blue)](https://github.com/keithws/node-ssllabs/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/node-ssllabs.svg?color=blue)](https://github.com/keithws/node-ssllabs/blob/master/LICENSE)
 
 
 > SSL Labs APIs expose the complete SSL/TLS server testing functionality in a programmatic fashion, allowing for scheduled and bulk assessment. We are making the APIs available to encourage site operators to regularly test their server configuration.

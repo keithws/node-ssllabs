@@ -1,6 +1,9 @@
 # Ignore package-lock.json for personal reasons
 package-lock.json
 
+# ignore intermidate cache for nyc (a.k.a istanbul)
+.nyc_output
+
 # Logs
 logs
 *.log

@@ -133,7 +133,6 @@ node-ssllabs is available under the [MIT License][2].
 ## TODO for next minor release
 
 * don't use the global HTTP agent
-* add User Agent String to all requests
 
 ## TODO for next major release
 
@@ -142,6 +141,11 @@ node-ssllabs is available under the [MIT License][2].
 * maintain support for using tunneling proxies (server side only?)
 
 ## Change Log
+
+*1.1.3— April 10, 2020*
+
+* added User Agent header to all requests
+* improved error handling
 
 *1.1.2— May 22, 2019*
 

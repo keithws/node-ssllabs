@@ -361,7 +361,7 @@ describe("ssllabs", function () {
 			this.slow(2 * 60 * 1000);
 
 			var options = {
-				host: "facebook.com",
+				host: "www.facebook.com",
 				startNew: true
 			};
 
@@ -385,7 +385,27 @@ describe("ssllabs", function () {
 			this.timeout(20 * 60 * 1000);
 			this.slow(2 * 60 * 1000);
 
-			ssllabs.scan("apple.com", function (err, host) {
+			ssllabs.scan("www.apple.com", function (err, host) {
+				if (err) {
+					done(err);
+					return;
+				}
+				host.status.should.be.ok;
+				host.status.should.equal("READY");
+				host.endpoints.length.should.be.above(0);
+				host.endpoints.forEach(function (endpoint) {
+					endpoint.grade.should.be.ok;
+					endpoint.grade.should.not.be.empty;
+				});
+				done();
+			});
+		});
+
+		it("should scan a host with a Unicode domain name (slow)", function (done) {
+			this.timeout(20 * 60 * 1000);
+			this.slow(2 * 60 * 1000);
+
+			ssllabs.scan("互联网中心.中国", function (err, host) {
 				if (err) {
 					done(err);
 					return;
@@ -407,24 +427,24 @@ describe("ssllabs", function () {
 
 			async.parallel([
 				function (callback) {
-					ssllabs.scan({host: "amazon.com", startNew: true}, function (err, host) {
+					ssllabs.scan({host: "www.amazon.com", startNew: true}, function (err, host) {
 						if (err) {
 							callback(err, null);
 						}
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
-						host.host.should.equal("amazon.com");
+						host.host.should.equal("www.amazon.com");
 						callback(null, host);
 					});
 				},
 				function (callback) {
-					ssllabs.scan("google.com", function (err, host) {
+					ssllabs.scan("www.google.com", function (err, host) {
 						if (err) {
 							callback(err, null);
 						}
 						host.status.should.be.ok;
 						host.status.should.equal("READY");
-						host.host.should.equal("google.com");
+						host.host.should.equal("www.google.com");
 						callback(null, host);
 					});
 				}

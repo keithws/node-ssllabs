@@ -142,6 +142,10 @@ node-ssllabs is available under the [MIT License][2].
 
 ## Change Log
 
+*2.0.0— April 10, 2020*
+
+* dropping support for node 6 because eslint and nyc no longer support it
+
 *1.1.3— April 10, 2020*
 
 * added User Agent header to all requests

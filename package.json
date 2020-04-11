@@ -16,7 +16,7 @@
   "repository": "https://github.com/keithws/node-ssllabs.git",
   "scripts": {
     "lint": "eslint \"**/*.js\"",
-    "pretest": "npm run lint",
+    "DONTpretest": "#eslint no longer works with node 6; npm run lint",
     "test": "nyc --reporter=text mocha",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },

@@ -10,7 +10,8 @@
     "scan",
     "test"
   ],
-  "author": "Keith Shaw",
+  "homepage": "https://github.com/keithws/node-ssllabs#readme",
+  "author": "Keith W. Shaw <keith.w.shaw@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/keithws/node-ssllabs.git",
   "scripts": {

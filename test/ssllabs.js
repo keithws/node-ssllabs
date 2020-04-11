@@ -291,9 +291,14 @@ describe("ssllabs", function () {
 					done(err);
 					return;
 				}
-				endpoint.statusMessage.should.be.ok;
-				endpoint.ipAddress.should.equal("64.41.200.100");
-				done();
+				try {
+					endpoint.statusMessage.should.be.ok;
+					endpoint.ipAddress.should.equal("64.41.200.100");
+					done();
+				} catch (err) {
+					console.dir({ "endpoint": endpoint })
+					done(err);
+				}
 			});
 		});
 
@@ -370,14 +375,21 @@ describe("ssllabs", function () {
 					done(err);
 					return;
 				}
-				host.status.should.be.ok;
-				host.status.should.equal("READY");
-				host.endpoints.length.should.be.above(0);
-				host.endpoints.forEach(function (endpoint) {
-					endpoint.grade.should.be.ok;
-					endpoint.grade.should.not.be.empty;
-				});
-				done();
+				try {
+					host.status.should.be.ok;
+					host.status.should.equal("READY");
+					host.endpoints.length.should.be.above(0);
+					host.endpoints.forEach(function (endpoint) {
+						endpoint.grade.should.be.ok;
+						endpoint.grade.should.not.be.empty;
+					});
+					done();
+				} catch (err) {
+					if (process.env.DEBUG) {
+						console.log(host);
+					}
+					done(err);
+				}
 			});
 		});
 
@@ -390,14 +402,22 @@ describe("ssllabs", function () {
 					done(err);
 					return;
 				}
-				host.status.should.be.ok;
-				host.status.should.equal("READY");
-				host.endpoints.length.should.be.above(0);
-				host.endpoints.forEach(function (endpoint) {
-					endpoint.grade.should.be.ok;
-					endpoint.grade.should.not.be.empty;
-				});
-				done();
+
+				try {
+					host.status.should.be.ok;
+					host.status.should.equal("READY");
+					host.endpoints.length.should.be.above(0);
+					host.endpoints.forEach(function (endpoint) {
+						endpoint.grade.should.be.ok;
+						endpoint.grade.should.not.be.empty;
+					});
+					done();
+				} catch (err) {
+					if (process.env.DEBUG) {
+						console.log(host);
+					}
+					done(err);
+				}
 			});
 		});
 
@@ -410,14 +430,21 @@ describe("ssllabs", function () {
 					done(err);
 					return;
 				}
-				host.status.should.be.ok;
-				host.status.should.equal("READY");
-				host.endpoints.length.should.be.above(0);
-				host.endpoints.forEach(function (endpoint) {
-					endpoint.grade.should.be.ok;
-					endpoint.grade.should.not.be.empty;
-				});
-				done();
+				try {
+					host.status.should.be.ok;
+					host.status.should.equal("READY");
+					host.endpoints.length.should.be.above(0);
+					host.endpoints.forEach(function (endpoint) {
+						endpoint.grade.should.be.ok;
+						endpoint.grade.should.not.be.empty;
+					});
+					done();
+				} catch (err) {
+					if (process.env.DEBUG) {
+						console.log(host);
+					}
+					done(err);
+				}
 			});
 		});
 

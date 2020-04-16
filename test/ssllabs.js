@@ -293,30 +293,6 @@ describe("ssllabs", function () {
 			});
 		});
 
-		it("should retrieve detailed endpoint information", function (done) {
-			var options;
-
-			options = {
-				host: "www.ssllabs.com",
-				s: "64.41.200.100"
-			};
-
-			ssllabs.getEndpointData(options, function (err, endpoint) {
-				if (err) {
-					done(err);
-					return;
-				}
-				try {
-					endpoint.statusMessage.should.be.ok;
-					endpoint.ipAddress.should.equal("64.41.200.100");
-					done();
-				} catch (err) {
-					console.log(endpoint);
-					done(err);
-				}
-			});
-		});
-
 		it("should retrieve known status codes", function (done) {
 			ssllabs.getStatusCodes(function (err, statusCodes) {
 				if (err) {
@@ -421,6 +397,30 @@ describe("ssllabs", function () {
 					done();
 				} catch (err) {
 					console.log(host);
+					done(err);
+				}
+			});
+		});
+
+		it("should retrieve detailed endpoint information", function (done) {
+			var options;
+
+			options = {
+				host: "www.ssllabs.com",
+				s: "64.41.200.100"
+			};
+
+			ssllabs.getEndpointData(options, function (err, endpoint) {
+				if (err) {
+					done(err);
+					return;
+				}
+				try {
+					endpoint.statusMessage.should.be.ok;
+					endpoint.ipAddress.should.equal("64.41.200.100");
+					done();
+				} catch (err) {
+					console.log(endpoint);
 					done(err);
 				}
 			});

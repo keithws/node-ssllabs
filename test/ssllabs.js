@@ -227,19 +227,24 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				info.should.have.properties([
-					"criteriaVersion",
-					"currentAssessments",
-					"engineVersion",
-					"maxAssessments",
-					"messages",
-					"newAssessmentCoolOff"
-				]);
-				info.currentAssessments.should.be.a.Number;
-				info.maxAssessments.should.be.a.Number;
-				info.messages.should.be.an.Array;
-				info.newAssessmentCoolOff.should.be.a.Number;
-				done();
+				try {
+					info.should.have.properties([
+						"criteriaVersion",
+						"currentAssessments",
+						"engineVersion",
+						"maxAssessments",
+						"messages",
+						"newAssessmentCoolOff"
+					]);
+					info.currentAssessments.should.be.a.Number;
+					info.maxAssessments.should.be.a.Number;
+					info.messages.should.be.an.Array;
+					info.newAssessmentCoolOff.should.be.a.Number;
+					done();
+				} catch (err) {
+					console.log(info);
+					done(err);
+				}
 			});
 		});
 
@@ -256,8 +261,13 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				host.status.should.be.ok;
-				done();
+				try {
+					host.status.should.be.ok;
+					done();
+				} catch (err) {
+					console.log(host);
+					done(err);
+				}
 			});
 		});
 
@@ -273,8 +283,13 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				host.status.should.be.ok;
-				done();
+				try {
+					host.status.should.be.ok;
+					done();
+				} catch (err) {
+					console.log(host);
+					done(err);
+				}
 			});
 		});
 
@@ -296,7 +311,7 @@ describe("ssllabs", function () {
 					endpoint.ipAddress.should.equal("64.41.200.100");
 					done();
 				} catch (err) {
-					console.dir({ "endpoint": endpoint })
+					console.log(endpoint);
 					done(err);
 				}
 			});
@@ -307,8 +322,13 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				statusCodes.should.have.property("statusDetails");
-				done();
+				try {
+					statusCodes.should.have.property("statusDetails");
+					done();
+				} catch (err) {
+					console.log(statusCodes);
+					done(err);
+				}
 			});
 		});
 
@@ -317,9 +337,14 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				rootCertsRaw.should.be.ok;
-				rootCertsRaw.should.be.a.String;
-				done();
+				try {
+					rootCertsRaw.should.be.ok;
+					rootCertsRaw.should.be.a.String;
+					done();
+				} catch (err) {
+					console.log(rootCertsRaw);
+					done(err);
+				}
 			});
 		});
 
@@ -328,10 +353,15 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				rootCertsRaw.should.be.ok;
-				rootCertsRaw.should.be.a.String;
-				rootCertsRaw.should.match(/Trust Store: Windows/);
-				done();
+				try {
+					rootCertsRaw.should.be.ok;
+					rootCertsRaw.should.be.a.String;
+					rootCertsRaw.should.match(/Trust Store: Windows/);
+					done();
+				} catch (err) {
+					console.log(rootCertsRaw);
+					done(err);
+				}
 			});
 		});
 
@@ -340,24 +370,29 @@ describe("ssllabs", function () {
 				if (err) {
 					return done(err);
 				}
-				certs.should.be.ok;
-				certs.should.be.an.Array;
-				var firstCert = certs[0];
-				firstCert.should.have.properties([
-					"name",
-					"subject",
-					"keyType",
-					"keyLength",
-					"notBefore",
-					"notAfter",
-					"certificate"
-				]);
-				firstCert.keyType.should.be.a.String;
-				firstCert.keyLength.should.be.a.Number;
-				firstCert.notBefore.should.be.a.Date;
-				firstCert.notAfter.should.be.a.Date;
-				firstCert.certificate.should.be.a.String;
-				done();
+				try {
+					certs.should.be.ok;
+					certs.should.be.an.Array;
+					var firstCert = certs[0];
+					firstCert.should.have.properties([
+						"name",
+						"subject",
+						"keyType",
+						"keyLength",
+						"notBefore",
+						"notAfter",
+						"certificate"
+					]);
+					firstCert.keyType.should.be.a.String;
+					firstCert.keyLength.should.be.a.Number;
+					firstCert.notBefore.should.be.a.Date;
+					firstCert.notAfter.should.be.a.Date;
+					firstCert.certificate.should.be.a.String;
+					done();
+				} catch (err) {
+					console.log(certs);
+					done(err);
+				}
 			});
 		});
 
@@ -385,9 +420,7 @@ describe("ssllabs", function () {
 					});
 					done();
 				} catch (err) {
-					if (process.env.DEBUG) {
-						console.log(host);
-					}
+					console.log(host);
 					done(err);
 				}
 			});
@@ -413,9 +446,7 @@ describe("ssllabs", function () {
 					});
 					done();
 				} catch (err) {
-					if (process.env.DEBUG) {
-						console.log(host);
-					}
+					console.log(host);
 					done(err);
 				}
 			});
@@ -440,9 +471,7 @@ describe("ssllabs", function () {
 					});
 					done();
 				} catch (err) {
-					if (process.env.DEBUG) {
-						console.log(host);
-					}
+					console.log(host);
 					done(err);
 				}
 			});
@@ -456,23 +485,33 @@ describe("ssllabs", function () {
 				function (callback) {
 					ssllabs.scan({host: "www.amazon.com", startNew: true}, function (err, host) {
 						if (err) {
-							callback(err, null);
+							callback(err);
 						}
-						host.status.should.be.ok;
-						host.status.should.equal("READY");
-						host.host.should.equal("www.amazon.com");
-						callback(null, host);
+						try {
+							host.status.should.be.ok;
+							host.status.should.equal("READY");
+							host.host.should.equal("www.amazon.com");
+							callback(null, host);
+						} catch (err) {
+							console.log(host);
+							callback(err);
+						}
 					});
 				},
 				function (callback) {
 					ssllabs.scan("www.google.com", function (err, host) {
 						if (err) {
-							callback(err, null);
+							callback(err);
 						}
-						host.status.should.be.ok;
-						host.status.should.equal("READY");
-						host.host.should.equal("www.google.com");
-						callback(null, host);
+						try {
+							host.status.should.be.ok;
+							host.status.should.equal("READY");
+							host.host.should.equal("www.google.com");
+							callback(null, host);
+						} catch (err) {
+							console.log(host);
+							callback(err);
+						}
 					});
 				}
 			], done);

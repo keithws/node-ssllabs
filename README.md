@@ -117,6 +117,8 @@ Testing with [Mocha][5] and [Should.js][6].
 
 As of version 1.1.0, this library will respect your `HTTPS_PROXY` environment variable and tunnel all requests to the specified URL. Compatible with all protocols supported by [proxy-agent](https://www.npmjs.com/package/proxy-agent).
 
+As of version 2.1.0, this library will set the proxy agent on each request it makes and will not override the global HTTP agent.
+
 ## License
 
 node-ssllabs is available under the [MIT License][2].
@@ -126,13 +128,12 @@ node-ssllabs is available under the [MIT License][2].
 * add (more) support for [access rate and rate limiting][4]
 * incorporate new info field, newAssessmentCoolOff, to access rate and rate limiting
 * add option to specify an array of hosts to scan
-* have the `scan` function emit events for polling progress
 * figure out if the maxAge parameter is required with the fromCache parameter
 * make API version changeable (maybe?) with createClient()?
 
 ## TODO for next minor release
 
-* don't use the global HTTP agent
+* have the `scan` function emit events for polling progress
 
 ## TODO for next major release
 
@@ -141,6 +142,10 @@ node-ssllabs is available under the [MIT License][2].
 * maintain support for using tunneling proxies (server side only?)
 
 ## Change Log
+
+*2.1.0— April 16, 2020*
+
+* set proxy agent on each HTTP request instead
 
 *2.0.0— April 10, 2020*
 
